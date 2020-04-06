@@ -1,10 +1,10 @@
 package com.bos.accountservice.register.controller;
 
 import bca.bit.proj.library.base.ResultEntity;
-import com.bos.register.dto.RegisterField;
-import com.bos.register.dto.RegisterVerif;
-import com.bos.register.entity.SellerDim;
-import com.bos.register.service.RegisterService;
+import com.bos.accountservice.register.dto.RegisterField;
+import com.bos.accountservice.register.dto.RegisterVerif;
+import com.bos.accountservice.register.entity.SellerDim;
+import com.bos.accountservice.register.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;

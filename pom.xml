@@ -12,7 +12,7 @@
 	<artifactId>account-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>account-service</name>
-	<description>API PROJECT BOS - Register & Login Service</description>
+	<description>API PROJECT BOS - RegisterLogin Service</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -34,6 +34,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
 		<dependency>
@@ -61,6 +65,11 @@
 			<groupId>org.bit</groupId>
 			<artifactId>proj-library</artifactId>
 			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.twilio.sdk</groupId>
+			<artifactId>twilio</artifactId>
+			<version>7.42.0</version>
 		</dependency>
 	</dependencies>
 

@@ -1,6 +1,6 @@
 package com.bos.accountservice.login.repository;
 
-import com.bos.login.model.Seller;
+import com.bos.accountservice.login.model.Seller;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

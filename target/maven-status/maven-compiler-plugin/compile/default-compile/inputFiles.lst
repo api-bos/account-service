@@ -1,0 +1,17 @@
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\config\security\SecurityConfig.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\config\twillio\CustomNetworkClient.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\controller\ResController.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\login\repository\SellerRepository.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\repository\SellerRepo.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\login\controller\LoginController.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\config\twillio\TwilioUtil.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\repository\OTPRepo.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\login\service\LoginService.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\entity\SellerDim.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\dto\RegisterField.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\service\RegisterService.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\dto\RegisterVerif.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\entity\OTPDim.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\dto\Verif.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\AccountServiceApplication.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\login\model\Seller.java

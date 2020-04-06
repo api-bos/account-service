@@ -1,8 +1,8 @@
 package com.bos.accountservice.login.controller;
 
 import bca.bit.proj.library.base.ResultEntity;
-import com.bos.login.model.Seller;
-import com.bos.login.service.LoginService;
+import com.bos.accountservice.login.model.Seller;
+import com.bos.accountservice.login.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -2,8 +2,8 @@ package com.bos.accountservice.login.service;
 
 import bca.bit.proj.library.base.ResultEntity;
 import bca.bit.proj.library.enums.ErrorCode;
-import com.bos.login.model.Seller;
-import com.bos.login.repository.SellerRepository;
+import com.bos.accountservice.login.model.Seller;
+import com.bos.accountservice.login.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
