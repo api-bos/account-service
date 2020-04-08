@@ -2,6 +2,7 @@ C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\s
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\config\twillio\CustomNetworkClient.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\controller\ResController.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\login\repository\SellerRepository.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\repository\AdminRepository.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\repository\SellerRepo.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\login\controller\LoginController.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\config\twillio\TwilioUtil.java
@@ -14,4 +15,5 @@ C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\s
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\entity\OTPDim.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\dto\Verif.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\AccountServiceApplication.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\login\model\Admin.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\login\model\Seller.java

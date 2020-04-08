@@ -11,9 +11,11 @@ com\bos\accountservice\register\repository\SellerRepo.class
 com\bos\accountservice\AccountServiceApplication.class
 com\bos\accountservice\login\controller\LoginController.class
 com\bos\accountservice\register\controller\ResController.class
+com\bos\accountservice\register\repository\AdminRepository.class
 com\bos\accountservice\login\service\LoginService.class
 com\bos\accountservice\register\entity\OTPDim$OTPDimBuilder.class
 com\bos\accountservice\register\entity\OTPDim.class
+com\bos\accountservice\login\model\Admin.class
 com\bos\accountservice\register\entity\SellerDim$SellerDimBuilder.class
 com\bos\accountservice\register\dto\RegisterVerif.class
 com\bos\accountservice\register\entity\SellerDim.class
