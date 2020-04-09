@@ -20,8 +20,6 @@ public class Seller {
     private String name;
     private String card_number;
     private String phone;
-    private String shop_name;
     private String image_path;
     private int flag;
-    private int id_kab_kota;
 }

@@ -42,6 +42,7 @@ public class LoginService {
                 return new ResultEntity(tmp_seller, ErrorCode.BIT_000);
             }
         }catch (Exception e){
+            e.printStackTrace();
             return new ResultEntity(null, ErrorCode.BOS_201);
         }
     }
