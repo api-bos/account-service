@@ -5,7 +5,7 @@ C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\s
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\repository\AdminRepository.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\repository\SellerRepo.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\login\controller\LoginController.java
-C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\config\twillio\TwilioUtil.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\entity\TwilioDim.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\repository\OTPRepo.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\controller\RegController.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\login\service\LoginService.java
@@ -15,6 +15,7 @@ C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\s
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\service\RegisterService.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\dto\RegisterVerif.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\entity\OTPDim.java
+C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\repository\TwilioRepo.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\register\dto\Verif.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\AccountServiceApplication.java
 C:\Users\u067728\Documents\BIT\Service\github-api-bos\services\account-service\src\main\java\com\bos\accountservice\login\model\Admin.java

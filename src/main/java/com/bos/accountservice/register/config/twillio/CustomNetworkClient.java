@@ -36,7 +36,6 @@ public class CustomNetworkClient extends HttpClient {
 
     private Float twilioResponseDuration;
 
-
     /**
      * Create a new HTTP Client.
      */
@@ -103,15 +102,19 @@ public class CustomNetworkClient extends HttpClient {
 
 
     public  void invokeHttpProxy() {
-        HttpHost proxy = new HttpHost("10.17.10.42", 8080, "http");
-//        HttpHost proxy = new HttpHost("kpproxygsit", 8080, "http");
+//        HttpHost proxy = new HttpHost("10.17.10.42", 8080, "http");
+        HttpHost proxy = new HttpHost("kpproxygsit", 8080, "http");
         DefaultProxyRoutePlanner routePlanner = new DefaultProxyRoutePlanner(proxy);
 
         //Set up Twilio user credentials
+        ///Tidak perlu jika sudah di-init pada service
+        /*
         CredentialsProvider credsProvider = new BasicCredentialsProvider();
         credsProvider.setCredentials(
                 new AuthScope("api.twilio.com", 443),
-                new UsernamePasswordCredentials(TwilioUtil.ACCOUNT_SID, TwilioUtil.AUTH_TOKEN));
+                new UsernamePasswordCredentials(ACCOUNT_SID, AUTH_TOKEN));
+
+         */
 
         RequestConfig config = RequestConfig.custom()
                 .setConnectTimeout(CONNECTION_TIMEOUT)
@@ -127,7 +130,7 @@ public class CustomNetworkClient extends HttpClient {
 
 
         client = HttpClientBuilder.create().setRoutePlanner(routePlanner)
-                .setDefaultCredentialsProvider(credsProvider)
+//                .setDefaultCredentialsProvider(credsProvider)
                 .setConnectionManager(new PoolingHttpClientConnectionManager())
                 .setDefaultRequestConfig(config)
                 .setDefaultHeaders(headers)

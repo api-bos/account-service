@@ -3,9 +3,9 @@ package com.bos.accountservice.register.service;
 import bca.bit.proj.library.base.ResultEntity;
 import bca.bit.proj.library.enums.ErrorCode;
 import com.bos.accountservice.register.config.twillio.CustomNetworkClient;
-import com.bos.accountservice.register.config.twillio.TwilioUtil;
 import com.bos.accountservice.register.dto.RegisterField;
 import com.bos.accountservice.register.dto.RegisterVerif;
+import com.bos.accountservice.register.entity.TwilioDim;
 import com.bos.accountservice.register.dto.Verif;
 import com.bos.accountservice.register.entity.OTPDim;
 import com.bos.accountservice.register.entity.SelectedCour;
@@ -13,6 +13,7 @@ import com.bos.accountservice.register.entity.SellerDim;
 import com.bos.accountservice.register.repository.OTPRepo;
 import com.bos.accountservice.register.repository.SelectCourierRepo;
 import com.bos.accountservice.register.repository.SellerRepo;
+import com.bos.accountservice.register.repository.TwilioRepo;
 import com.twilio.Twilio;
 import com.twilio.http.TwilioRestClient;
 import com.twilio.rest.api.v2010.account.Message;
@@ -35,12 +36,18 @@ public class RegisterService {
     SellerRepo sellRepo;
     @Autowired
     SelectCourierRepo courierRepo;
+    @Autowired
+    TwilioRepo twilioRepo;
 
     private void initMessageSender() {
+        TwilioDim util = twilioRepo.getToken();
+
+        String ACCOUNT_SID = util.getSid();
+        String AUTH_TOKEN = util.getToken();
         CustomNetworkClient newHttpClient = new CustomNetworkClient();
-        Twilio.init(TwilioUtil.ACCOUNT_SID, TwilioUtil.AUTH_TOKEN);
+//        Twilio.init(ACCOUNT_SID, AUTH_TOKEN); // hanya perlu jika pakai default class twilio
         TwilioRestClient client = new TwilioRestClient
-                .Builder(TwilioUtil.ACCOUNT_SID, TwilioUtil.AUTH_TOKEN)
+                .Builder(ACCOUNT_SID, AUTH_TOKEN)
                 .httpClient(newHttpClient)
                 .build();
         Twilio.setRestClient(client);
@@ -83,7 +90,7 @@ public class RegisterService {
             }
         }
 
-        l_message = "Your OTP code is " + l_otpCode + ", only valid for 3 minutes";
+        l_message = "Kode OTP anda adalah " + l_otpCode + ", JANGAN BERIKAN KEPADA SIAPAPUN";
         initMessageSender();
 
         try{
@@ -104,7 +111,8 @@ public class RegisterService {
         String vAcctNo = sellRepo.findAcctNo(acctNo);
         String vPhone = sellRepo.findPhone(phone);
 
-        System.out.println("\nusename: "+vUsername);
+        System.out.println("\n================is seller?================");
+        System.out.println("usename: "+vUsername);
         System.out.println("account_no: "+vAcctNo);
         System.out.println("phone: "+vPhone);
         System.out.println();
@@ -157,7 +165,7 @@ public class RegisterService {
     }
 
     public ResultEntity<String> sendOTP(RegisterField registerField) {
-        System.out.println("rek no inserted: " + registerField.getNoRek());
+        System.out.println("\nrek no inserted: " + registerField.getNoRek());
         boolean otpStatus;
 
         String username = registerField.getBosId();
@@ -169,7 +177,7 @@ public class RegisterService {
         Integer isSeller = isSeller(username,acctNo,phone);
         Integer isNasabah = isNasabah(acctNo,phone);
         System.out.println("isSeller: "+isSeller);
-        System.out.println("isNasabah: "+isNasabah);
+        System.out.println("isNasabah: "+isNasabah+"\n");
 
         if(isSeller == 1)
             return new ResultEntity<>("Username telah digunakan", ErrorCode.BIT_999);
@@ -198,6 +206,7 @@ public class RegisterService {
             tmp_seller.setFlag(0);
             tmp_seller.setImagePath("");
             sellRepo.save(tmp_seller);
+            System.out.println("\nSAVED\n");
 
             //Send OTP
             otpStatus = sendOTP(username, phone);
