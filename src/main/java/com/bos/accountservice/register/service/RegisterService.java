@@ -8,8 +8,10 @@ import com.bos.accountservice.register.dto.RegisterField;
 import com.bos.accountservice.register.dto.RegisterVerif;
 import com.bos.accountservice.register.dto.Verif;
 import com.bos.accountservice.register.entity.OTPDim;
+import com.bos.accountservice.register.entity.SelectedCour;
 import com.bos.accountservice.register.entity.SellerDim;
 import com.bos.accountservice.register.repository.OTPRepo;
+import com.bos.accountservice.register.repository.SelectCourierRepo;
 import com.bos.accountservice.register.repository.SellerRepo;
 import com.twilio.Twilio;
 import com.twilio.http.TwilioRestClient;
@@ -31,6 +33,8 @@ public class RegisterService {
     OTPRepo otpRepo;
     @Autowired
     SellerRepo sellRepo;
+    @Autowired
+    SelectCourierRepo courierRepo;
 
     private void initMessageSender() {
         CustomNetworkClient newHttpClient = new CustomNetworkClient();
@@ -251,7 +255,17 @@ public class RegisterService {
             //update flag seller
             sellRepo.updateFlagByUsername(4, username);
 
+            //create selected courier
             Integer idSeller = sellRepo.findIdSellerbyUsername(username);
+            System.out.println("\nid_seller: "+idSeller);
+            for(int i = 0; i<3; i++){
+                SelectedCour selectedCour = new SelectedCour();
+                selectedCour.setIdSeller(idSeller);
+                selectedCour.setIdCourier(i+1);
+                selectedCour.setSelected(0);
+                courierRepo.save(selectedCour);
+            }
+
             return new ResultEntity<>("id_seller: "+idSeller, ErrorCode.BIT_000);
         }
         else {

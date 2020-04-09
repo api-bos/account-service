@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/bos/regis")
-@CrossOrigin(origins = {"*"})
-public class ResController {
+@RequestMapping(path = "/bos/seller")
+public class RegController {
     @Autowired
     RegisterService service;
 

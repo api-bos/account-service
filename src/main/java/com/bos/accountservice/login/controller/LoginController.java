@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/bos", consumes = "application/json", produces = "application/json")
-@CrossOrigin(origins = {"*"})
 public class LoginController {
     @Autowired
     LoginService g_loginService;
