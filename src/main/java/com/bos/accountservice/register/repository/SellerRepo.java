@@ -18,6 +18,9 @@ public interface SellerRepo extends JpaRepository<SellerDim,Integer> {
     @Query(value = "SELECT sd.username FROM SellerDim sd WHERE sd.username = :username")
     String findUsername(@Param("username") String username);
 
+    @Query(value = "SELECT sd.email FROM SellerDim sd WHERE sd.email = :email")
+    String findEmail(@Param("email") String email);
+
     @Query(value = "SELECT sd.accountNo FROM SellerDim sd WHERE sd.accountNo = :accountNo")
     String findAcctNo(@Param("accountNo") String accountNo);
 
@@ -26,6 +29,17 @@ public interface SellerRepo extends JpaRepository<SellerDim,Integer> {
 
     @Query(value = "SELECT sd.username FROM SellerDim sd WHERE sd.phone = :phone")
     String findUsernamebyPhone(@Param("phone") String phone);
+
+    @Query(value = "SELECT sd.email FROM SellerDim sd WHERE sd.username = :username")
+    String findEmailbyUsername(@Param("username") String username);
+
+    @Query(value = "SELECT sd.password FROM SellerDim sd WHERE sd.username = :username")
+    String findPassbyUsername(@Param("username") String username);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE SellerDim SET password = :password WHERE username = :username")
+    void updatePassByUsername(@Param("password") String password, @Param("username") String username);
 
     @Transactional
     @Modifying

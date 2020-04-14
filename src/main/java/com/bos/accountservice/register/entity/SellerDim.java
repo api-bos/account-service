@@ -48,4 +48,7 @@ public class SellerDim {
 
     @Column(name = "account_no")
     private String accountNo;
+
+    @Column(name = "email")
+    private String email;
 }

@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class RegisterField {
     private String bosId;
     private String nama;
+    private String email;
     private String noRek;
     private String noHp;
     private String password;

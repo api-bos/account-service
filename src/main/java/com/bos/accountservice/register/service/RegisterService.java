@@ -20,6 +20,8 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -38,6 +40,9 @@ public class RegisterService {
     SelectCourierRepo courierRepo;
     @Autowired
     TwilioRepo twilioRepo;
+
+    @Autowired
+    JavaMailSender mailSender;
 
     private void initMessageSender() {
         TwilioDim util = twilioRepo.getToken();
@@ -104,15 +109,17 @@ public class RegisterService {
         }
     }
 
-    private Integer isSeller(String username, String acctNo, String phone){
+    private Integer isSeller(String username, String acctNo, String phone, String email){
         Integer status;
 
         String vUsername = sellRepo.findUsername(username);
+        String vEmail = sellRepo.findEmail(email);
         String vAcctNo = sellRepo.findAcctNo(acctNo);
         String vPhone = sellRepo.findPhone(phone);
 
         System.out.println("\n================is seller?================");
         System.out.println("usename: "+vUsername);
+        System.out.println("email: "+vEmail);
         System.out.println("account_no: "+vAcctNo);
         System.out.println("phone: "+vPhone);
         System.out.println();
@@ -120,6 +127,7 @@ public class RegisterService {
         if(vUsername!=null && !vUsername.isEmpty()) status = 1;
         else if(vAcctNo!=null && !vAcctNo.isEmpty()) status = 2;
         else if(vPhone!=null && !vPhone.isEmpty()) status = 3;
+        else if(vEmail!=null && !vEmail.isEmpty()) status = 4;
         else status = 0;
 
         return status;
@@ -170,11 +178,12 @@ public class RegisterService {
 
         String username = registerField.getBosId();
         String nama = registerField.getNama();
+        String email = registerField.getEmail();
         String acctNo = registerField.getNoRek();
         String phone = registerField.getNoHp();
         String pw = new BCryptPasswordEncoder().encode(registerField.getPassword());
 
-        Integer isSeller = isSeller(username,acctNo,phone);
+        Integer isSeller = isSeller(username,acctNo,phone,email);
         Integer isNasabah = isNasabah(acctNo,phone);
         System.out.println("isSeller: "+isSeller);
         System.out.println("isNasabah: "+isNasabah+"\n");
@@ -185,6 +194,8 @@ public class RegisterService {
             return new ResultEntity<>("Account_no telah digunakan",ErrorCode.BIT_999);
         else if(isSeller == 3)
             return new ResultEntity<>("No_hp telah digunakan",ErrorCode.BIT_999);
+        else if(isSeller == 4)
+            return new ResultEntity<>("Email telah digunakan",ErrorCode.BIT_999);
         else if(isNasabah != 0){
             if(isNasabah == 1)
                 return new ResultEntity<>("BCA -- INVALID MOBILE NUMBER",ErrorCode.BIT_999);
@@ -192,7 +203,7 @@ public class RegisterService {
                 return new ResultEntity<>("BCA -- INVALID ACCOUNT NO",ErrorCode.BIT_999);
             else return new ResultEntity<>("SYSTEM UNDER MAINTENANCE",ErrorCode.BIT_999);
         }
-        else if(username == null || nama == null || acctNo == null || phone == null || pw == null){
+        else if(username == null || nama == null || email == null || acctNo == null || phone == null || pw == null){
             System.out.println("\nNULL FIELD");
             return new ResultEntity<>("Field tidak boleh kosong",ErrorCode.BIT_999);
         }
@@ -200,6 +211,7 @@ public class RegisterService {
             SellerDim tmp_seller = new SellerDim();
             tmp_seller.setAccountNo(acctNo);
             tmp_seller.setName(nama);
+            tmp_seller.setEmail(email);
             tmp_seller.setPhone(phone);
             tmp_seller.setUsername(username);
             tmp_seller.setPassword(pw);
@@ -293,6 +305,53 @@ public class RegisterService {
             }
         }
     }
+
+    public int sendSimpleMsg(String email, String idBos){
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(email);
+            message.setSubject("BOS - Forgot Password");
+            message.setText("Here is link to re-new your password: bos.bca.co.id/forgetPassword/"+idBos);
+            mailSender.send(message);
+            System.out.println("Success send E-mail");
+            return 0;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Failed send E-mail");
+            return 1;
+        }
+    }
+
+    public ResultEntity<String> forgotPass(String idBos){
+        String email = sellRepo.findEmailbyUsername(idBos);
+        System.out.println("Email: "+email);
+        String pass = sellRepo.findPassbyUsername(idBos);
+        System.out.println("Pass: "+pass);
+
+        if(email.isEmpty() && email == null) return new  ResultEntity<>("Invalid id_bos",ErrorCode.BIT_999);
+
+        // Send Email
+        int emailStatus = sendSimpleMsg(email,idBos);
+        if(emailStatus == 0) return new ResultEntity<>("Succeed to Send Email",ErrorCode.BIT_000);
+        else return new ResultEntity<>("Failed to Send Email",ErrorCode.BIT_999);
+    }
+
+    public ResultEntity<String> reNewPass(String idBos, String password){
+        System.out.println("\n========================ReNew Pass========================");
+        try {
+            String pw = new BCryptPasswordEncoder().encode(password);
+            sellRepo.updatePassByUsername(pw,idBos);
+            System.out.println("Succeed update pass");
+            return new ResultEntity<>("Succeed Update Password",ErrorCode.BIT_000);
+        }
+        catch (Exception e){
+            System.out.println("Failed update pass\n");
+            e.printStackTrace();
+            return new ResultEntity<>("Failed Update Password",ErrorCode.BIT_999);
+        }
+    }
+
 
     public ResultEntity<List<SellerDim>> getAllSeller(){
         List<SellerDim> data = sellRepo.findAll();
